@@ -131,3 +131,16 @@ function setuserName() {
 
 }
 setuserName();
+
+// alerts and search bar handling!
+const searchBtn=document.querySelector('.search-icon');
+const alertBtn=document.querySelector('.alerts-icon');
+
+function handleButtons(button){
+    button.addEventListener('click',(e)=>{
+        alert('This Feature Will Be Available Soon..');
+        return;
+    });
+}
+handleButtons(searchBtn);
+handleButtons(alertBtn);
