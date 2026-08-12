@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="Js/external.js" defer></script>
+    <script src="js/tasks.js" defer></script>
+    <title>Quest Forge</title>
+</head>
+
+<body>
+    <div class="whole-todo-wrapper">
+        <nav class="navbar-laptop">
+            <div class="site-logo-brand">
+                <img src="Application Media/Application Logos/questforge-logo.jpeg" class="brand-logo">
+                <h2>Quest Forge</h2>
+            </div>
+            <div class="nav-options-laptop">
+                <div class="lp-nav-btn lp-dashboard-btn">
+                    <img src="Application Media/Application Logos/business.png">
+                    <p>DashBoard</p>
+                </div>
+                <div class="lp-nav-btn lp-todaytask-btn">
+                    <img src="Application Media/Application Logos/checklist.png">
+                    <p>Today's Tasks</p>
+                </div>
+                <div class="lp-nav-btn lp-upcomingtask-btn">
+                    <img src="Application Media/Application Logos/upcoming.png">
+                    <p>Upcoming Tasks</p>
+                </div>
+                <div class="lp-nav-btn lp-completedtasks-btn">
+                    <img src="Application Media/Application Logos/check.png">
+                    <p>Completed Tasks</p>
+                </div>
+                <div class="lp-nav-btn lp-importanttask-btn">
+                    <img src="Application Media/Application Logos/vital (1).png">
+                    <p>Important Tasks</p>
+                </div>
+                <div class="lp-nav-btn lp-alltask-btn">
+                    <img src="Application Media/Application Logos/grid.png">
+                    <p>All Tasks</p>
+                </div>
+                <div class="lp-nav-btn lp-deletedtasks-btn">
+                    <img src="Application Media/Application Logos/bin.png">
+                    <p>Deleted Tasks</p>
+                </div>
+            </div>
+
+            <div class="lp-quotebox-1">
+                <p><span class="quote0">"</span>The Pain Today,Success Tomorrow!<br><span class="wise-men">-Wise
+                        Men</span></p>
+            </div>
+            <div class="timer"></div>
+            <div class="chatgpt-direct">
+                <a href="https://chatgpt.com/" target="_blank"><img
+                        src="Application Media/Application Logos/chatgpt.png"></a>
+                <p> Click Icon, <br>Ask Chatgpt</p>
+            </div>
+            <div class="log-out-div">
+                <img src="Application Media/Application Logos/power-off.png">
+                <p>Log Out</p>
+            </div>
+        </nav>
+        <section class="dashboard-page">
+
+            <!-- Brand logo section -->
+            <div class="brand-search-alerts-bar">
+                <div class="brand-logo-div"><img src="Application Media/Application Logos/questforge-logo.jpeg"
+                        class="brand-logo"> Quest Forge</div>
+                <div class="search-alerts-icon-div"><img src="Application Media/Application Logos/searchbar.png"
+                        class="search-icon"><img src="Application Media/Application Logos/alerts.png"
+                        class="alerts-icon"></div>
+            </div>
+
+            <!-- Welcome wishing section -->
+            <div class="welcome-wish-box">
+                <h1 class="user-name-line">Welcome</h1>
+                <p>Every day is a step closer to your best outcome.</p>
+            </div>
+
+            <!-- Task entry section -->
+            <div class="task-entry-section">
+                <div class="task-name-input-div">
+                    <input type="text" placeholder="What's On Your Mind Today?" class="task-name-input">
+                </div>
+                <div class="task-date-priority-div">
+                    <div class="helper-div">
+                        <input type="date" class="task-date-input" id="date-picker">
+                        <select class="priority-selection task-priority-input">
+                            <option value="Select Priority">Select Priority</option>
+                            <option value="Top">Top</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                        <input type="time" class="task-time-input" id="time-picker">
+                    </div>
+                    <div class="time-submit-box">
+                        <button class="submit-task-btn"> + Add Task</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Tasks Classification-section -->
+            <div class="whole-tasks-section">
+                <div class="tasks-classification-div">
+                    <div class="task-category today-tasks-btn">
+                        <h4>Today</h4>
+                    </div>
+                    <div class="task-category upcoming-tasks-btn">
+                        <h4>Upcoming</h4>
+                    </div>
+                    <div class="task-category completed-tasks-btn">
+                        <h4>Completed</h4>
+                    </div>
+                </div>
+
+                <!-- Tasks Display Section -->
+                <div class="tasks-whole-div">
+                    <div class="today-tasks-box">
+                        <h4>Today's Tasks</h4>
+                        <div class="today-tasks">
+
+                        </div>
+                    </div>
+                    <div class="upcoming-tasks-box display_none">
+                        <h4>Upcoming Tasks</h4>
+                        <div class="upcoming-tasks">
+
+                        </div>
+                    </div>
+                    <div class="completed-tasks-box display_none">
+                        <h4>Completed Tasks</h4>
+                        <div class="completed-tasks">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="imp-tasks-div lp-tasks-division display_none">
+                <h4>Important Tasks</h4>
+                <div class="add-imp-tasks lp-add-tasks">
+
+                </div>
+            </div>
+            <div class="all-tasks-div lp-tasks-division display_none">
+                <h4>All Tasks</h4>
+                <div class="add-all-tasks lp-add-tasks">
+
+                </div>
+            </div>
+            <div class="del-tasks-div lp-tasks-division display_none">
+                <h4>Deleted Tasks</h4>
+                <div class="add-del-tasks lp-add-tasks">
+
+                </div>
+                <button class="lp-clear-del-tasks">Clear All Records</button>
+            </div>
+
+            <div class="quote-box-1">
+                <p class="quote1-text"><span class="quote1">"</span>The Secret of Getting Ahead is..<br>Getting
+                    Started...<br><span class="wise-men">-Wise Men</span></p>
+            </div>
+        </section>
+        <section class="statistics-bar">
+            <div class="calender-box">
+                <div class="clndr-logo-title">
+                    <img src="Application Media/Application Logos/calendar.png">
+                    <p>Calendar</p>
+                </div>
+
+                <div class="calendar-buttons">
+                    <button class="prev_month"></button>
+                    <p class="year-name"></p>
+                    <button class="next_month"></button>
+                </div>
+                <div class="calendar">
+                    <div class="days-div"></div>
+                    <div class="date-div"></div>
+                </div>
+
+            </div>
+            <div class="lp-quote-2">
+                <p><span class="quote2">"</span>Discipline First...Success Follows!<br><span class="wise-men">-Wise
+                        Men</span></p>
+            </div>
+            <div class="progress-bar">
+                <div>
+                    <img src="Application Media/Application Logos/rising.png">
+                    <p>Progress</p>
+                </div>
+
+                <div class="status">
+                    <div class="outer_circle">
+                        <div class="inner_circle">
+
+                        </div>
+                    </div>
+                    <div class="tasks-counts">
+
+                    </div>
+                </div>
+            </div>
+            <div class="streak-box">
+                <p>Streak Count 🔥</p>
+                <div class="streak">
+
+                </div>
+            </div>
+            <div class="lp-meet-designer">
+                <p>Need Help?</p>
+                <div class="lp-social-links">
+                    <a href="https://www.linkedin.com/in/talari-jagan-mohan?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        target="_blank"><img src="Application Media/Application Logos/linkedin (2).png"
+                            class="lp-link-icon"></a>
+                    <a href="https://github.com/Target-reached" target="_blank"><img
+                            src="Application Media/Application Logos/github-sign (1).png" class="lp-link-icon"></a>
+                    <a href="https://www.instagram.com/man_of_the_men__8?igsh=MWZnYTk3a3lhbnc0dQ==" target="_blank"><img
+                            src="Application Media/Application Logos/instagram (1).png" class="lp-link-icon"></a>
+                    <a href="mailto:jai.8.joy@gmail.com?subject=Support%20request" target="_blank"><img
+                            src="Application Media/Application Logos/gmail.png" class="lp-link-icon"></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="all-tasks-page display_none">
+            <h2>All Tasks Here!</h2>
+            <div class="all-tasks-container">
+
+            </div>
+        </section>
+
+        <section class="important-tasks-page display_none">
+            <h2>Important Tasks Here</h2>
+            <div class="imp-tasks-container">
+
+            </div>
+        </section>
+
+        <section class="settings-page display_none">
+            <h2>Settings</h2>
+            <div class="settings-here">
+                <h4>Task Options</h4>
+                <div class="task-options">
+                    <button class="clear-all-tasks">Clear All Tasks</button>
+                    <button class="clear-completed-tasks">Clear Completed Tasks</button>
+                    <button class="view-deleted-tasks">View Deleted Tasks</button>
+                    <div class="mb-log-out-div">
+                        <img src="Application Media/Application Logos/power-off.png">
+                        <p>Log Out</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="deleted-tasks visibility_hidden">
+                <div class="addtodeleted-box">
+
+                </div>
+                <button class="clear-del-tasks">Delete Records</button>
+                <button class="hide-del-tasks">Hide</button>
+            </div>
+            <div class="meet-designer">
+                <p>Reach Engineer</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/talari-jagan-mohan?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        target="_blank"><img src="Application Media/Application Logos/linkedin (2).png"
+                            class="link-icon"></a>
+                    <a href="https://github.com/Target-reached" target="_blank"><img
+                            src="Application Media/Application Logos/github-sign (1).png" class="link-icon"></a>
+                    <a href="https://www.instagram.com/man_of_the_men__8?igsh=MWZnYTk3a3lhbnc0dQ==" target="_blank"><img
+                            src="Application Media/Application Logos/instagram (1).png" class="link-icon"></a>
+                    <a href="mailto:jai.8.joy@gmail.com?subject=Support%20request" target="_blank"><img
+                            src="Application Media/Application Logos/gmail.png" class="link-icon"></a>
+                </div>
+            </div>
+            <footer>&copy; 2026 - Jagan Mohan T</footer>
+        </section>
+
+        <!-- NavBar for mobile screens -->
+        <nav class="navbar-mobile">
+            <div class="nav-option dashboard-page-btn">
+                <img src="Application Media/Application Logos/dashboard.png" class="nav-option-icon">
+                <p class="nav-option-name">Dashboard</p>
+            </div>
+            <div class="nav-option alltasks-page-btn">
+                <img src="Application Media/Application Logos/all-tasks.png" class="nav-option-icon">
+                <p class="nav-option-name">All Tasks</p>
+            </div>
+            <div class="nav-option important-tasks-page-btn">
+                <img src="Application Media/Application Logos/important.png" class="nav-option-icon">
+                <p class="nav-option-name">Important</p>
+            </div>
+            <div class="nav-option settings-page-btn">
+                <img src="Application Media/Application Logos/settings.png" class="nav-option-icon">
+                <p class="nav-option-name">Settings</p>
+            </div>
+        </nav>
+    </div>
+</body>
+
+</html>
