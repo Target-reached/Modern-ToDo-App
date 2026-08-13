@@ -126,10 +126,11 @@ function setuserName() {
             userName = 'User..';
         }
         localStorage.setItem('username', JSON.stringify(userName));
+        alert('Please Enable Notifications By Clicking On Alerts Button To Recieve Alerts On Tasks!');
         
     }
     usernameDisplay.textContent = `Welcome, ${userName}..`;
-    alert('Please Enable Notifications By Clicking On Alerts Button To Recieve Alerts On Tasks!');
+    
 
 }
 setuserName();
