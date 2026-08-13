@@ -256,7 +256,6 @@ function updateStreak() {
 
     const streakDisplay = document.querySelector('.streak');
     const streak = calculateStreak();
-    console.log(streak)
     streakDisplay.textContent = `${streak}`;
     if (streak === 0) {
         document.querySelector('.streak-box').style.boxShadow = '0px 0px 5px red';
@@ -287,6 +286,59 @@ function timerDisplay() {
     }, 1000);
 }
 timerDisplay();
+
+// const now=new Date();
+// const reminderTime=
+const seacrBar = document.querySelector('.search-bar');
+const searchBtn = document.querySelector('.search-icon');
+const alertBtn = document.querySelector('.alerts-icon');
+
+const alertsBtn = document.querySelector('.alerts-icon');
+
+const alertAlarm = new Audio('notification audio/alarm.mp3')
+
+searchBtn.addEventListener('click', (e) => {
+    alert('This Feature Will Be Available Soon..');
+    return;
+    // seacrBar.classList.toggle('visibility_hidden');
+});
+
+const notifiedTasks = new Set();
+
+function checkTasks() {
+    const now = new Date();
+    const tenminuteslLater = new Date(now.getTime() + 10 * 60 * 1000);
+    taskInformation.forEach(eachTask => {
+        if (eachTask.is_task_finished) {
+            return;
+        }
+        const taskDue = new Date(`${eachTask.taskdueDate}T${eachTask.taskdueTime}`);
+
+        if (taskDue >= now &&
+            taskDue <= tenminuteslLater &&
+            !notifiedTasks.has(eachTask.taskId)) {
+            new Notification(`${eachTask.taskName} is waiting..`, {
+                body: `${eachTask.taskName} is due in next 10 Minutes!`
+            });
+            alertAlarm.play();
+            notifiedTasks.add(eachTask.taskId);
+        }
+    });
+}
+let notificationInterval = null;
+alertBtn.addEventListener('click', async (e) => {
+    const enableNotifications = await Notification.requestPermission();
+    if (enableNotifications !== 'granted') {
+        alert('Notifications Disabled!');
+        return;
+    }
+
+    if (notificationInterval === null) {
+        checkTasks();
+        setInterval(checkTasks, 5000);
+    }
+
+});
 
 
 
