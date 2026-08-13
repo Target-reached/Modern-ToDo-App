@@ -127,6 +127,7 @@ function taskboxCreator(objectName) {
     taskpriorityInfo.className = 'task-priority-info';
     taskpriorityInfo.textContent = objectName.taskPriority;
     const tasktimeInfo = document.createElement('p');
+    const hour = Number(objectName.taskdueTime.split(':')[0]);
     if (hour >= 12) {
         tasktimeInfo.textContent = objectName.taskdueTime + ' PM';
     } else {
