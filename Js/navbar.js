@@ -122,7 +122,7 @@ const usernameDisplay = document.querySelector('.user-name-line');
 function setuserName() {
     if (!userName) {
         userName = prompt('Enter Your Name : ');
-        if (userName === null || userName === '') {
+        if (!userName || userName.trim() === '') {
             userName = 'User..';
         }
         localStorage.setItem('username', JSON.stringify(userName));
