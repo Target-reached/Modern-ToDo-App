@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 * {
     padding: 0px;
     margin: 0px;
@@ -39,7 +40,7 @@ footer {
     min-height: 100vh;
     padding: 10px;
     background-color: rgb(11, 8, 47);
-    font-family: roboto;
+    font-family: 'Roboto', sans-serif;;
     color: white;
 }
 
@@ -83,7 +84,16 @@ footer {
     border-radius: 50%;
     cursor: pointer;
 }
-
+.brand-logo-mb{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.brand-logo-div>p{
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+}
 .brand-logo {
     border-radius: 50%;
     height: 25px;
@@ -611,6 +621,9 @@ footer {
 /* Styliing for mobile screens */
 
 @media screen and (min-width:900px) {
+    .brand-logo-div>p{
+        display: none;
+    }
     .brand-search-alerts-bar {
         display: flex;
     }
