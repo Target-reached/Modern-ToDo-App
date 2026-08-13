@@ -186,12 +186,12 @@ function taskboxCreator(objectName) {
     editdatetimepriorityBox.append(editPriority, editdueDate, editdueTime);
     taskedit_mode.append(editNameBox, editdatetimepriorityBox, editActions);
     taskBox.append(taskedit_mode);
-
     /* Logic code for task options!*/
     checkBtn.addEventListener('change', (e) => {
         objectName.is_task_finished = checkBtn.checked;
         if (checkBtn.checked) {
-            alert('Great,Keep Moving')
+            notifiedTasks.delete(objectName.taskId);
+            alert('Great,Keep Moving');
         } else {
             alert('Good,You Are Genuine!');
         }
@@ -213,6 +213,7 @@ function taskboxCreator(objectName) {
         if (!confirmDelete) {
             return;
         }
+        notifiedTasks.delete(objectName.taskId);
         const deleted_tasks = taskInformation.find(deleted_task => {
             return deleted_task.taskId === task_id;
         });
@@ -262,6 +263,8 @@ function taskboxCreator(objectName) {
             return;
         }
 
+        notifiedTasks.delete(objectName.taskId);
+
         objectName.taskName = newName;
         objectName.taskdueDate = newDate;
         objectName.taskdueTime = newTime;
@@ -282,7 +285,7 @@ function taskboxCreator(objectName) {
         taskedit_mode.classList.add('display_none');
         taskdisplay_div.classList.remove('display_none');
     });
-    
+
     if (duedateTime < createdTime && !objectName.is_task_finished) {
         taskBox.style.backgroundColor = 'rgb(255, 127, 127)';
     }
@@ -408,7 +411,7 @@ renderdeletedTasks();
 const screenbreakpoint = window.matchMedia('(min-width: 900px)');
 
 function handleresizeLayout() {
-
+    window.location.reload();
     renderallTasks();
     renderdeletedTasks();
 }
