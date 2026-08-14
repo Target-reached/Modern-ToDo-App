@@ -197,7 +197,7 @@ Overdue Tasks : ${overdueTasks.length}</p>`;
     innerCircle.textContent = `${progressMade} %`;
 }
 updateProgress();
-updateOverdueTasks();
+setInterval(updateOverdueTasks, 1000);
 const logoutBtn = document.querySelector('.log-out-div');
 logoutBtn.addEventListener('click', (e) => {
     const confirmlogOut = confirm('It Wipes All Your Tasks and Data, Continue?');
