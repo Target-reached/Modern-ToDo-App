@@ -197,7 +197,7 @@ Overdue Tasks : ${overdueTasks.length}</p>`;
     innerCircle.textContent = `${progressMade} %`;
 }
 updateProgress();
-
+updateOverdueTasks();
 const logoutBtn = document.querySelector('.log-out-div');
 logoutBtn.addEventListener('click', (e) => {
     const confirmlogOut = confirm('It Wipes All Your Tasks and Data, Continue?');
@@ -325,6 +325,39 @@ function checkTasks() {
         }
     });
 }
+
+function updateOverdueTasks() {
+    const tasksInfo = document.querySelector('.tasks-counts');
+
+    const overdueTasks = taskInformation.filter(task => {
+        if (task.is_task_finished) {
+            return false;
+        }
+
+        const dueDate = new Date(`${task.taskdueDate}T${task.taskdueTime}`);
+
+        return dueDate < new Date();
+    });
+
+    const allTasks = taskInformation.length;
+
+    const completedTasks = taskInformation.filter(task => {
+        return task.is_task_finished;
+    });
+
+    const remainingTasks = allTasks - completedTasks.length;
+
+    tasksInfo.innerHTML = `
+        <p>
+            All Tasks : ${allTasks}<br>
+            Completed Tasks : ${completedTasks.length}<br>
+            Remaining Tasks : ${remainingTasks}<br>
+        </p>
+        <p class="overdueinfo">
+            Overdue Tasks : ${overdueTasks.length}
+        </p>
+    `;
+}
 let notificationInterval = null;
 alertBtn.addEventListener('click', async (e) => {
     const enableNotifications = await Notification.requestPermission();
@@ -339,6 +372,7 @@ alertBtn.addEventListener('click', async (e) => {
     }
 
 });
+
 
 
 
