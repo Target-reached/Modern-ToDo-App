@@ -147,6 +147,7 @@ let progressAnimB;
 let currentProgress = 0;
 
 // progress section
+
 function updateProgress() {
     const outerCircle = document.querySelector('.outer_circle');
     const innerCircle = document.querySelector('.inner_circle');
@@ -158,7 +159,7 @@ function updateProgress() {
         return counter.is_task_finished;
     });
     const overdueTasks = taskInformation.filter(counter => {
-        const duedate = new Date(`${counter.taskdueDate}T${counter.taskdueTime}`)
+        const duedate = new Date(`${counter.taskdueDate}T${counter.taskdueTime}`);
         return (duedate < now && !counter.is_task_finished)
     });
     const remianingTasks = alltasksCount - allcompletedTasks.length;
@@ -192,12 +193,15 @@ function updateProgress() {
 
     tasksInfo.innerHTML = `<p>All Tasks : ${alltasksCount}<br>
 Completed Tasks : ${allcompletedTasks.length}<br>
-Remaining Tasks : ${remianingTasks}<br>
-Overdue Tasks : ${overdueTasks.length}</p>`;
+Remaining Tasks : ${remianingTasks}<br></p>
+<p class='overdueinfo'>Overdue Tasks : ${overdueTasks.length}</p>`;
     innerCircle.textContent = `${progressMade} %`;
+
 }
 updateProgress();
 setInterval(updateOverdueTasks, 1000);
+
+
 const logoutBtn = document.querySelector('.log-out-div');
 logoutBtn.addEventListener('click', (e) => {
     const confirmlogOut = confirm('It Wipes All Your Tasks and Data, Continue?');
@@ -287,9 +291,8 @@ function timerDisplay() {
 }
 timerDisplay();
 
-// const now=new Date();
-// const reminderTime=
-const seacrBar = document.querySelector('.search-bar');
+
+const searchBar = document.querySelector('.search-bar');
 const searchBtn = document.querySelector('.search-icon');
 const alertBtn = document.querySelector('.alerts-icon');
 
@@ -297,11 +300,6 @@ const alertsBtn = document.querySelector('.alerts-icon');
 
 const alertAlarm = new Audio('notification audio/alarm.mp3')
 
-searchBtn.addEventListener('click', (e) => {
-    alert('This Feature Will Be Available Soon..');
-    return;
-    // seacrBar.classList.toggle('visibility_hidden');
-});
 
 const notifiedTasks = new Set();
 
@@ -320,11 +318,27 @@ function checkTasks() {
             new Notification(`${eachTask.taskName} is waiting..`, {
                 body: `${eachTask.taskName} is due in next 10 Minutes!`
             });
-            alertAlarm.play();
+            alertAlarm.play().catch(error => {
+                console.log('Error!', error);
+            });
             notifiedTasks.add(eachTask.taskId);
         }
     });
 }
+let notificationInterval = null;
+alertBtn.addEventListener('click', async (e) => {
+    const enableNotifications = await Notification.requestPermission();
+    if (enableNotifications !== 'granted') {
+        alert('Notifications Disabled!');
+        return;
+    }
+
+    if (notificationInterval === null) {
+        checkTasks();
+        notificationInterval = setInterval(checkTasks, 5000);
+    }
+
+});
 
 function updateOverdueTasks() {
     const tasksInfo = document.querySelector('.tasks-counts');
@@ -358,24 +372,60 @@ function updateOverdueTasks() {
         </p>
     `;
 }
-let notificationInterval = null;
-alertBtn.addEventListener('click', async (e) => {
-    const enableNotifications = await Notification.requestPermission();
-    if (enableNotifications !== 'granted') {
-        alert('Notifications Disabled!');
+
+
+const searchResults = document.querySelector('.search-results');
+searchBtn.addEventListener('click', (e) => {
+    searchBar.classList.toggle('visibility_hidden');
+});
+searchBar.addEventListener('keydown', (e) => {
+
+    const pressed = e.key;
+    if (pressed !== 'Enter') {
         return;
     }
 
-    if (notificationInterval === null) {
-        checkTasks();
-        setInterval(checkTasks, 5000);
+    const userSearch = searchBar.value.trim();
+    if (userSearch === '') {
+        alert('Enter task name to search!');
+        return;
     }
+    searchBar.value = '';
+    searchResults.classList.remove('display_none');
 
+    const results = checkExistance(userSearch);
+    if (results === 'Not Found!') {
+        searchResults.textContent = 'Not Found!';
+        setTimeout(() => {
+            searchResults.textContent = '';
+            searchResults.classList.add('display_none');
+        }, 900);
+        return;
+    }
+    let taskDone = '';
+    if (!results.is_task_finished) {
+        taskDone = 'Not Completed!';
+    } else {
+        taskDone = 'Completed!'
+    }
+    searchResults.innerHTML =
+        `<p>Task Name : ${results.taskName}</p>
+        <p>Task Due Date : ${results.taskdueDate}</p>
+        <p>Task Due Time : ${results.taskdueTime}</p>
+        <p>Task Status : ${taskDone}</p>
+        <button class='close-results'>Close</button>`;
+    const closeResults = document.querySelector('.close-results');
+    closeResults.addEventListener('click', (e) => {
+        searchResults.classList.add('display_none');
+    });
 });
 
+function checkExistance(taskName) {
+    const is_found = taskInformation.find(task => task.taskName.toLowerCase() === taskName.toLowerCase());
+    if (is_found) {
+        return is_found
+    } else {
+        return 'Not Found!'
+    }
 
-
-
-
-
-
+}
