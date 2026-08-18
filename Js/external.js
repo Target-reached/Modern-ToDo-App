@@ -292,8 +292,8 @@ function timerDisplay() {
 timerDisplay();
 
 
-const searchBar = document.querySelector('.search-bar');
-const searchBtn = document.querySelector('.search-icon');
+const searchBar = document.querySelector('.search-bar-btn');
+const searchIcon = document.querySelector('.search-icon');
 const alertBtn = document.querySelector('.alerts-icon');
 
 const alertsBtn = document.querySelector('.alerts-icon');
@@ -375,22 +375,20 @@ function updateOverdueTasks() {
 
 
 const searchResults = document.querySelector('.search-results');
-searchBtn.addEventListener('click', (e) => {
+const searchBtn = document.querySelector('.search-btn');
+const searchInput = document.querySelector('.search-bar')
+searchIcon.addEventListener('click', (e) => {
     searchBar.classList.toggle('visibility_hidden');
 });
-searchBar.addEventListener('keydown', (e) => {
+searchBtn.addEventListener('click', (e) => {
+    const givenData = searchInput.value.trim();
 
-    const pressed = e.key;
-    if (pressed !== 'Enter') {
-        return;
-    }
-
-    const userSearch = searchBar.value.trim();
+    const userSearch = searchInput.value.trim();
     if (userSearch === '') {
         alert('Enter task name to search!');
         return;
     }
-    searchBar.value = '';
+    searchInput.value = '';
     searchResults.classList.remove('display_none');
 
     const results = checkExistance(userSearch);
@@ -429,3 +427,44 @@ function checkExistance(taskName) {
     }
 
 }
+
+searchInput.addEventListener('keydown', (e) => {
+    const pressed = e.key;
+    if (pressed !== 'Enter') {
+        return;
+    }
+
+    const userSearch = searchInput.value.trim();
+    if (userSearch === '') {
+        alert('Enter task name to search!');
+        return;
+    }
+    searchInput.value = '';
+    searchResults.classList.remove('display_none');
+
+    const results = checkExistance(userSearch);
+    if (results === 'Not Found!') {
+        searchResults.textContent = 'Not Found!';
+        setTimeout(() => {
+            searchResults.textContent = '';
+            searchResults.classList.add('display_none');
+        }, 900);
+        return;
+    }
+    let taskDone = '';
+    if (!results.is_task_finished) {
+        taskDone = 'Not Completed!';
+    } else {
+        taskDone = 'Completed!'
+    }
+    searchResults.innerHTML =
+        `<p>Task Name : ${results.taskName}</p>
+        <p>Task Due Date : ${results.taskdueDate}</p>
+        <p>Task Due Time : ${results.taskdueTime}</p>
+        <p>Task Status : ${taskDone}</p>
+        <button class='close-results'>Close</button>`;
+    const closeResults = document.querySelector('.close-results');
+    closeResults.addEventListener('click', (e) => {
+        searchResults.classList.add('display_none');
+    });
+});
