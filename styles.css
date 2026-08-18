@@ -105,6 +105,18 @@ footer {
     width: 25px;
 
 }
+.search-bar-btn{
+    display: flex;
+    flex-direction: column;
+    
+}
+.search-btn{
+    width: 30%;
+    border-radius: 10px;
+    align-self: center;
+    background-color: rgb(222, 236, 248);
+    margin-bottom: 10px;
+}
 
 
 .search-bar {
