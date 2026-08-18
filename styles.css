@@ -45,6 +45,10 @@ footer {
     font-family: 'Roboto', sans-serif;
     color: white;
 }
+.whole-todo-wrapper h2{
+text-align:center;
+
+}
 
 
 .dashboard-page,
