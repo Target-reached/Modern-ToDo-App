@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 * {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
+
 
 ::-webkit-scrollbar {
     display: none;
@@ -39,20 +41,11 @@ footer {
 .whole-todo-wrapper {
     min-height: 100vh;
     padding: 10px;
-    background-color: rgb(11, 8, 47);
-    font-family: 'Roboto', sans-serif;;
+    background-color: rgb(16, 15, 64);
+    font-family: 'Roboto', sans-serif;
     color: white;
 }
 
-.dark-theme-style {
-    background-color: rgb(11, 8, 47);
-    color: white;
-}
-
-.light-theme-style {
-    background-color: rgb(237, 235, 235);
-    color: black;
-}
 
 .dashboard-page,
 .all-tasks-page,
@@ -80,34 +73,78 @@ footer {
     gap: 20px;
     align-items: center;
 }
-.alerts-icon,.search-icon{
+
+.wise-men .alerts-icon,
+.search-icon {
     border-radius: 50%;
     cursor: pointer;
 }
-.brand-logo-mb{
+
+.brand-logo-mb {
     height: 30px;
     width: 30px;
     border-radius: 50%;
 }
-.brand-logo-div>p{
+
+.brand-logo-div>p {
     font-size: 1.5rem;
     font-weight: bold;
     font-style: italic;
 }
+
 .brand-logo {
     border-radius: 50%;
     height: 25px;
     width: 30px;
 }
+
 .search-icon,
 .alerts-icon {
     margin-right: 10px;
     height: 20px;
     width: 25px;
+
 }
-.search-results{
-    min-height: 200px;
-    border: 1px solid;
+
+
+.search-bar {
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+    color: rgb(250, 249, 248);
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 3px aqua;
+    border-radius: 5px;
+}
+
+.search-bar::placeholder {
+    color: rgb(181, 184, 184);
+    padding: 5px;
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 0px 3px aqua;
+    height: 250px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background-color: rgb(10, 10, 10);
+    word-break: break-all;
+    white-space: pre-line;
+    padding: 20px;
+    color: rgb(25, 248, 28);
+    padding-top: 25px;
+    transition: all 0.5s ease;
+}
+
+.close-results {
+    width: 20%;
+    align-self: center;
+    background-color: black;
+    color: white;
+    box-shadow: 0px 0px 3px aqua;
 }
 
 .welcome-wish-box {
@@ -127,7 +164,7 @@ footer {
     flex-direction: column;
 }
 
-.task-name-input,.search-bar {
+.task-name-input {
     margin-top: 15px;
     width: 100%;
     height: 30px;
@@ -136,6 +173,7 @@ footer {
     border-radius: 5px;
     padding-left: 10px;
     color: rgb(207, 201, 201);
+
 }
 
 .task-name-input::placeholder {
@@ -341,8 +379,8 @@ footer {
     align-items: center;
     gap: 10px;
     width: 100%;
-    padding:5px;
-    text-align:center;
+    padding: 5px;
+    text-align: center;
 }
 
 .task-options-div {
@@ -403,12 +441,6 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: rgb(175, 186, 186);
 }
 
 .settings-page {
@@ -516,7 +548,8 @@ h2 {
     background-color: rgb(66, 224, 245);
     border-radius: 10px;
 }
-.clear-del-tasks{
+
+.clear-del-tasks {
     margin-top: 10px;
     width: max-content;
     background-color: orange;
@@ -623,13 +656,15 @@ footer {
 /* Styliing for mobile screens */
 
 @media screen and (min-width:900px) {
-    .brand-logo-div>p{
+    .brand-logo-div>p {
         display: none;
     }
+
     .brand-search-alerts-bar {
         display: flex;
     }
-    .brand-logo-mb{
+
+    .brand-logo-mb {
         display: none;
     }
 
@@ -697,6 +732,10 @@ footer {
     .lp-nav-btn img {
         height: 30px;
         width: 30px;
+    }
+
+    .lp-nav-btn:focus {
+        background-color: aqua;
     }
 
     .lp-quotebox-1 {
@@ -1006,10 +1045,7 @@ footer {
         border-radius: 10px;
     }
 
-    .quote {
-        font-size: 2rem;
-        color: aqua;
-    }
+
 
     .progress-bar {
         padding: 5px;
@@ -1018,17 +1054,20 @@ footer {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-style: italic;
     }
-    .progress-bar>p{
+
+    .progress-bar>p {
         color: orange;
         text-align: center;
     }
-    .progress-bar>div{
+
+    .progress-bar>div {
         display: flex;
         width: 100%;
         justify-content: center;
         gap: 10px;
     }
-    .progress-bar>div>img{
+
+    .progress-bar>div>img {
         height: 20px;
         width: 20px;
     }
